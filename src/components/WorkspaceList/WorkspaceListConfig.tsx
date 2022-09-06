@@ -5,12 +5,17 @@ import { Label, Button } from '@patternfly/react-core';
 export type WorkspaceRowData = {
   name: string;
   labels: string[];
+  uid: string;
 };
 
 type RowProps<T> = {
   obj: T;
 };
 
+export const wsRowActions = [
+  {'title': 'action one'},
+  {'title': 'action two'}
+]
 // Component defining the design for each row in the list
 export const WorkspaceRow: React.FC<RowProps<WorkspaceRowData>> = ({ obj }) => {
   return (
@@ -27,6 +32,11 @@ export const WorkspaceRow: React.FC<RowProps<WorkspaceRowData>> = ({ obj }) => {
             {label}
           </Label>
         ))}
+      </Td>
+      <Td dataLabel='uid'>
+          <Label>
+            {obj.uid}
+          </Label>
       </Td>
     </>
   );
@@ -48,6 +58,13 @@ export const workspaceColumns = [
       className: '',
     },
   },
+  {
+    title: 'UID',
+    id: 'uid',
+    props: {
+      className: 'testclass-uid',
+    },
+  }
 ];
 
 // Workspace list filters (defines the Search input at the top of the list)
